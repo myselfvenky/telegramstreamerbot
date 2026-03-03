@@ -1,6 +1,9 @@
 import os
 import asyncio
 import time
+from dotenv import load_dotenv
+
+load_dotenv()
 
 from aiogram import Bot, Dispatcher, Router
 from aiogram.enums import ChatType
