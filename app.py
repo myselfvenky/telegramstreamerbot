@@ -15,10 +15,8 @@ TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 OPENAI_MODEL = os.getenv("OPENAI_MODEL") or "gpt-4o-mini"
 
-
 def _make_draft_id() -> int:
     return int(time.time() * 1000) % 2_147_483_647 or 1
-
 
 def _clip(text: str, max_len: int = 4096) -> str:
     if len(text) <= max_len:
@@ -48,7 +46,6 @@ async def _openai_stream_text(prompt: str):
                 yield delta.content
     except Exception as e:
         yield f"OpenAI error: {e}"
-
 
 async def stream_ai_response(bot: Bot, chat_id: int, prompt: str) -> None:
     draft_id = _make_draft_id()
